@@ -1,0 +1,34 @@
+FFmpeg Summary
+
+Video Processing:
+
+Conversion: Convert between various video formats (e.g., MP4, MKV, AVI).
+Quality Adjustment: Lower quality using CRF or bitrate, reduce resolution.
+Extraction: Extract audio or video portions from a video.
+Editing: Cut, trim, or merge video segments.
+Effects: Apply effects like contrast, brightness, saturation, filters, and transitions.
+
+Image Processing:
+
+Conversion: Convert between image formats (e.g., JPG, SVG).
+Compression: Reduce file size by adjusting quality or resolution.
+Color Manipulation: Adjust brightness, contrast, saturation, and convert to grayscale.
+Transformation: Flip images horizontally or vertically.
+
+Key Points:
+
+CRF: Controls the balance between quality and file size.
+Bitrate: Determines the amount of data per second.
+Resolution: Adjusts the dimensions of the video or image.
+Filters: Apply various effects and transformations.
+Format Conversion: Convert between different file formats.
+
+
+Questions:
+1. How to add an Outro video part to multiple videos ?
+2. Hot to merge multiple Videos like Video1 + Video2 + Video3 + Video4 ?
+3. How to speed up a video 2x, 3x ?
+4. Hot to convert 4:3 aspect ratio to 16:9 aspect ratio ?
+
+
+ffmpeg -y -i "song1.mp3" -c:a aac -b:a 128k -muxdelay 0 -f segment -sc_threshold 0 -segment_time 10 -segment_list "playlistForSong1.m3u8" -segment_format mpegts "segment%dForSong1.m4a"

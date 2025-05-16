@@ -1,0 +1,126 @@
+Video Processing
+
+Easy Convert
+---------------------------------------------------------
+ffmpeg -i demo.mp4 output.mkv
+
+Lower MP4 Video quality (CRF: Constant Rate Factor)
+---------------------------------------------------------
+ffmpeg -i demo.mp4 -crf 28 -preset ultrafast low_quality.mp4
+ffmpeg -i demo.mp4 -crf 50 -preset ultrafast low_quality1.mp4
+ffmpeg -i demo.mp4 -crf 30 -preset fast low_quality2.mp4
+
+Reduce Resolution 4K to 1080 or 720
+---------------------------------------------------------
+ffmpeg -i input.mp4 -vf scale=1280:720 -c:v libx264 -crf 23 output.mp4
+
+Reduce File size by lowering Bitrate (CBR: Constant Bit Rate) 
+---------------------------------------------------------
+ffmpeg -i input.mp4 -b:v 1M output.mp4
+ffmpeg -i input/355993_av1.mp4 -vf scale=1280:720 -c:v libx264 -b:v 500k  output/bit3.mp4
+
+Convert MP4 to MP3 by discarding Video
+---------------------------------------------------------
+ffmpeg -i demo.mp4 -vn output_audio.mp3
+ffmpeg -i demo.mp4 -vn -q:a 0 output_audio1.mp3
+
+Ignore Audio from Video 
+---------------------------------------------------------
+ffmpeg -i input.mp4 -an output.mp4
+
+Higher the Contrast video
+---------------------------------------------------------
+ffmpeg -i demo.mp4 -vf "eq=contrast=1.3" constrasted.mp4
+ffmpeg -i full.jpg -vf eq=contrast=1.4  output.jpg
+
+Convert Video Clip to GIF
+---------------------------------------------------------
+ffmpeg -i input.mp4 -vf scale=320:240,fps=10 output.gif
+
+Cut Video portions/Parts (HH:MM:SS)
+---------------------------------------------------------
+ffmpeg -i input.mp4 -ss 00:02:00 -to 00:05:00 -c copy output.mp4
+
+Take a Screenshot from a Video
+---------------------------------------------------------
+ffmpeg -ss 00:01:30 -i input.mp4 -vframes 1 output.jpg
+
+Crop Video
+---------------------------------------------------------
+ffmpeg -i input.mp4 -vf crop=w=1172:h=827:x=368:y=126 output.mp4
+
+
+
+
+Image Processing
+
+Convert JPG to SVG
+---------------------------------------------------------
+ffmpeg -i input.jpg -pix_fmt svg output.svg
+
+Compress Image size with Reducing Resolution [w:h]
+---------------------------------------------------------
+ffmpeg -i input_image.jpg -vf "scale=iw*0.75:ih*0.75" output_image.jpg
+
+Compress Image size without Reducing Resolution [w:h]
+---------------------------------------------------------
+ffmpeg -i input_image.jpg -q:v 5 output_image.jpg
+
+Color Filters
+
+Adjust brightness:
+---------------------------------------------------------
+ffmpeg -i sample1.jpg -vf "eq=brightness=0.06" obright.jpg
+
+Adjust contrast:
+---------------------------------------------------------
+ffmpeg -i input.jpg -vf "eq=contrast=1.5" output.jpg
+
+Adjust saturation:
+---------------------------------------------------------
+ffmpeg -i input.jpg -vf "eq=saturation=1.8" output.jpg
+
+Color to B/w
+---------------------------------------------------------
+ffmpeg -i input.jpg -vf "format=gray" output.jpg
+
+Flip Horizontally
+---------------------------------------------------------
+ffmpeg -i input.jpg -vf "hflip" output.jpg
+
+Flip Vertically:
+---------------------------------------------------------
+ffmpeg -i input.jpg -vf "vflip" output.jpg
+
+ffprobe Analysis
+
+Simple Analysis
+---------------------------------------------------------
+ffprobe -i input.ts
+
+Verbose Analysis, and in JSON format
+---------------------------------------------------------
+ffprobe -v verbose -show_format -show_streams input.ts
+ffprobe -v quiet -print_format json -show_format -show_streams input.ts
+
+
+Explaination
+---------------------------------------------------------
+-c:v libx264 (codecs and value)
+-b:v 1M (CBR: Constant Bit Rate, bitrate cbr and value, it can vary from 100k, 200k, 500k, 1M, 2M) sd to 4k
+-vf scale=1280:720 (video filters)
+    These filters can be used to perform a wide range of operations, including:
+    Resizing: Changing the dimensions of the video (e.g., from 1080p to 720p).
+    Cropping: Trimming portions of the video.
+    Adding effects: Applying effects like filters, transitions, and text overlays.
+    Color correction: Adjusting the color balance, brightness, contrast, and saturation.
+    Stabilization: Reducing camera shake.
+    Deinterlacing: Converting interlaced video to progressive scan.
+    chain multiple filters together using a comma-separated list: 
+        -vf scale=640:480,boxblur=luma_radius=10:luma_power=2
+-crf 28 (CRF: Constant Rate Factor: 1 to 30, lower the crf higher the size & quality)
+-vn (Video None: ignore the video stream of the input file and only process the audio stream )
+-an (Audio None: ignore the audio stream of the input file and only process the video stream )
+
+Helping Documentation
+https://ffmpeg.org/ffmpeg.html
