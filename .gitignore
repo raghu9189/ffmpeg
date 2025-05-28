@@ -1,0 +1,24 @@
+# ignore dir's listed below
+
+
+/lower/*
+!/lower/.gitkeep
+
+/reduced/*
+!/reduced/.gitkeep
+
+/res/*
+!/res/.gitkeep
+
+/res1/*
+!/res1/.gitkeep
+
+/schol/*
+!/schol/.gitkeep
+
+/size_output/*
+!/size_output/.gitkeep
+
+/webp/*
+!/webp/.gitkeep
+
