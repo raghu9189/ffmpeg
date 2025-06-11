@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set input and output directories
-INPUT_DIR="schol"
-OUTPUT_DIR="res1"
+INPUT_DIR="careers_grid"
+OUTPUT_DIR="careers_grid_output"
 QUALITY=15  # ffmpeg quality scale (lower is better quality)
 
 # Create output directory if it doesn't exist
@@ -17,7 +17,7 @@ for img in "$INPUT_DIR"/*.jpg "$INPUT_DIR"/*.jpeg; do
     output_path="$OUTPUT_DIR/$filename"
 
     echo "Compressing $filename..."
-    ffmpeg -i "$img"  -vf scale=1200:-1 -q:v $QUALITY "$output_path"
+    ffmpeg -i "$img"  -vf scale=800:-1 -q:v $QUALITY "$output_path"
 done
 
 echo "All images compressed to $OUTPUT_DIR"

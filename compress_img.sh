@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Set input and output directories
-INPUT_DIR="reduced"
-OUTPUT_DIR="res1"
-QUALITY=25  # ffmpeg quality scale (lower is better quality)
+INPUT_DIR="courses_grid/rest"
+OUTPUT_DIR="courses_grid_output_rest"
+QUALITY=24  # ffmpeg quality scale (lower is better quality)
 
 # Create output directory if it doesn't exist
 mkdir -p "$OUTPUT_DIR"
