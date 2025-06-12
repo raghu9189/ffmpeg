@@ -93,6 +93,12 @@ ffmpeg -i input_image.jpg -vf "scale=iw*0.75:ih*0.75" output_image.jpg
 ffmpeg -i input_image.jpg -q:v 5 output_image.jpg
 ```
 
+## Compress Image by Reducing Aspect Ratio
+
+```bash
+ffmpeg -i input_image.jpg -vf scale=800:-1 -q:v output_image.jpg
+```
+
 ---
 
 # Color Filters
